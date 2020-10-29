@@ -371,7 +371,6 @@ ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' ${BASEDIR}
     --enable-optimizations \
     --enable-swscale \
     --enable-shared \
-    --enable-v4l2-m2m \
     --disable-network \
     --disable-autodetect \
     --enable-small \

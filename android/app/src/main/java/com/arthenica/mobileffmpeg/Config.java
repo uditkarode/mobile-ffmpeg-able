@@ -265,7 +265,6 @@ public class Config {
                 break;
                 case AV_LOG_STDERR:
                 case AV_LOG_VERBOSE: {
-                    android.util.Log.v(TAG, text);
                 }
                 break;
                 case AV_LOG_INFO: {
@@ -283,7 +282,6 @@ public class Config {
                 }
                 break;
                 default: {
-                    android.util.Log.v(TAG, text);
                 }
                 break;
             }
