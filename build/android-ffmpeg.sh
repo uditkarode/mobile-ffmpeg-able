@@ -155,10 +155,10 @@ do
                 LDFLAGS+=" $(pkg-config --libs --static vidstab)"
                 CONFIGURE_POSTFIX+=" --enable-libvidstab --enable-gpl"
             ;;
-            libvorbis)
-                CFLAGS+=" $(pkg-config --cflags vorbis)"
-                LDFLAGS+=" $(pkg-config --libs --static vorbis)"
-                CONFIGURE_POSTFIX+=" --enable-libvorbis"
+            lib)
+                CFLAGS+=" $(pkg-config --cflags )"
+                LDFLAGS+=" $(pkg-config --libs --static )"
+                CONFIGURE_POSTFIX+=" --enable-lib"
             ;;
             libvpx)
                 CFLAGS+=" $(pkg-config --cflags vpx)"
@@ -195,11 +195,6 @@ do
                 CFLAGS+=" $(pkg-config --cflags rubberband)"
                 LDFLAGS+=" $(pkg-config --libs --static rubberband)"
                 CONFIGURE_POSTFIX+=" --enable-librubberband --enable-gpl"
-            ;;
-            shine)
-                CFLAGS+=" $(pkg-config --cflags shine)"
-                LDFLAGS+=" $(pkg-config --libs --static shine)"
-                CONFIGURE_POSTFIX+=" --enable-libshine"
             ;;
             sdl)
                 CFLAGS+=" $(pkg-config --cflags sdl2)"
@@ -368,6 +363,7 @@ ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' ${BASEDIR}
     --cxx="${CXX}" \
     --extra-libs="$(pkg-config --libs --static cpu-features)" \
     --target-os=android \
+    --disable-everything \
     ${ARCH_OPTIONS} \
     --enable-cross-compile \
     --enable-pic \
@@ -376,39 +372,18 @@ ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' ${BASEDIR}
     --enable-swscale \
     --enable-shared \
     --enable-v4l2-m2m \
-    --disable-outdev=fbdev \
-    --disable-indev=fbdev \
+    --disable-network \
+    --disable-autodetect \
+    --enable-small \
+    --enable-libshine \
+    --enable-decoder=libshine,mp3,webm,matroska,opus,vorbis \
+    --enable-demuxer=mp3,webm,matroska,opus,vorbis \
+    --enable-encoder=libshine,matroska,webm,opus,vorbis \
+    --enable-muxer=mp3,matroska,opus,webm,vorbis \
+    --enable-protocol=file \
+    --enable-filter=aresample \
     ${SIZE_OPTIONS} \
-    --disable-openssl \
-    --disable-xmm-clobber-test \
     ${DEBUG_OPTIONS} \
-    --disable-neon-clobber-test \
-    --disable-programs \
-    --disable-postproc \
-    --disable-doc \
-    --disable-htmlpages \
-    --disable-manpages \
-    --disable-podpages \
-    --disable-txtpages \
-    --disable-static \
-    --disable-sndio \
-    --disable-schannel \
-    --disable-securetransport \
-    --disable-xlib \
-    --disable-cuda \
-    --disable-cuvid \
-    --disable-nvenc \
-    --disable-vaapi \
-    --disable-vdpau \
-    --disable-videotoolbox \
-    --disable-audiotoolbox \
-    --disable-appkit \
-    --disable-alsa \
-    --disable-cuda \
-    --disable-cuvid \
-    --disable-nvenc \
-    --disable-vaapi \
-    --disable-vdpau \
     ${CONFIGURE_POSTFIX} 1>>${BASEDIR}/build.log 2>&1
 
 if [ $? -ne 0 ]; then
