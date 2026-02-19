@@ -1,18 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace 'com.arthenica.ffmpegkit'
-    }
-    compileSdk 33
-    ndkVersion "22.1.7171670"
+    namespace 'com.arthenica.ffmpegkit'
+    compileSdk 36
+    ndkVersion "26.1.10909125"
 
     defaultConfig {
         minSdk 24
-        targetSdk 33
+        targetSdk 36
         versionCode 240600
         versionName "6.0"
-        project.archivesBaseName = "ffmpeg-kit"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -24,20 +21,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     sourceSets {
         main {
             jniLibs.srcDirs = ["../libs"]
-        }
-    }
-
-    testOptions {
-        unitTests.returnDefaultValues = true
-        unitTests.all {
-            systemProperty 'enable.ffmpeg.kit.test.mode', 'true'
         }
     }
 
@@ -49,17 +39,6 @@ android {
     }
 }
 
-task javadoc(type: Javadoc) {
-    title = 'FFmpegKit'
-    destinationDir = file("${projectDir}/../../docs/android/javadoc")
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    source = android.sourceSets.main.java.srcDirs
-    configurations.implementation.setCanBeResolved(true)
-    classpath += configurations.implementation
-}
-
 dependencies {
     api 'com.arthenica:smart-exception-java:0.2.1'
-    testImplementation "androidx.test.ext:junit:1.1.5"
-    testImplementation 'org.json:json:20230618'
 }

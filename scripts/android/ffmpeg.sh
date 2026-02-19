@@ -436,10 +436,8 @@ fi
   --enable-pic \
   --enable-jni \
   --enable-optimizations \
-  --enable-swscale \
   ${BUILD_LIBRARY_OPTIONS} \
   --enable-pthreads \
-  --enable-v4l2-m2m \
   --disable-outdev=fbdev \
   --disable-indev=fbdev \
   ${SIZE_OPTIONS} \
@@ -471,6 +469,16 @@ fi
   --disable-nvenc \
   --disable-vaapi \
   --disable-vdpau \
+  --disable-everything \
+  --enable-avdevice \
+  --enable-swscale \
+  --enable-decoder=mp3,mp3float,opus,vorbis,libvorbis,pcm_s16le \
+  --enable-encoder=libmp3lame \
+  --enable-demuxer=matroska,mp3,ogg \
+  --enable-muxer=mp3,matroska,ogg \
+  --enable-parser=mpegaudio,opus,vorbis \
+  --enable-protocol=file \
+  --enable-filter=aresample,anull,aformat \
   ${CONFIGURE_POSTFIX} 1>>"${BASEDIR}"/build.log 2>&1
 
 if [[ $? -ne 0 ]]; then

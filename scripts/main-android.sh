@@ -81,9 +81,7 @@ while [ ${#enabled_library_list[@]} -gt $completed ]; do
       fi
       ;;
     lame)
-      if [[ $OK_libiconv -eq 1 ]]; then
-        run=1
-      fi
+      run=1
       ;;
     leptonica)
       if [[ $OK_giflib -eq 1 ]] && [[ $OK_jpeg -eq 1 ]] && [[ $OK_libpng -eq 1 ]] && [[ $OK_tiff -eq 1 ]] && [[ $OK_libwebp -eq 1 ]]; then

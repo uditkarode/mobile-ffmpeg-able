@@ -1126,7 +1126,6 @@ set_library() {
     ;;
   lame)
     ENABLED_LIBRARIES[LIBRARY_LAME]=$2
-    set_virtual_library "libiconv" $2
     ;;
   libaom)
     ENABLED_LIBRARIES[LIBRARY_LIBAOM]=$2
